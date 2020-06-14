@@ -36,3 +36,15 @@ def getSummaries(q, k):
         # sorting summary document ids accoring to scores
         docScores=[ [score,doc] for doc,score in docscores.items()]
         docScores.sort(reverse=True)
+
+        top_matches = []
+        # getting summaries data from top summary ids found
+        summaries_file = open("search_data/summaries.pkl","rb")
+        summaries = pickle.load(summaries_file)
+        count = 0
+        for el in docScores:
+            if count == k:
+                break
+            top_matches.append(summaries[el[1]])
+            count += 1
+    return top_matches
