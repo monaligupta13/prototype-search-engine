@@ -14,6 +14,8 @@ def create_dictionary_data():
     summaries_file = open('raw_data/data.json', 'r')
     summaries = json.load(summaries_file)
     if "summaries" in summaries:
+        # modify into dictionary to use later for search
+        modify_summaries(summaries["summaries"])
 
         total_count = len(summaries["summaries"])
         # complete index comprising all books to be used for search
@@ -64,6 +66,15 @@ def create_dictionary_data():
         index_file.close()
 
     summaries_file.close()
+
+# modify summaries json as dictionary to query during search
+def modify_summaries(summaries):
+    main_dict = dict()
+    for s in summaries:
+        main_dict[s["id"]] = s
+    main_data_file = open("search_data/summaries.pkl","wb")
+    pickle.dump(main_dict, main_data_file)
+    main_data_file.close()
 
 if __name__ == "__main__":
     create_dictionary_data()
