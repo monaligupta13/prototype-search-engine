@@ -1,4 +1,5 @@
 import pickle
+import sys
 # local module
 from text_processing import *
 
@@ -48,3 +49,6 @@ def getSummaries(q, k):
             top_matches.append(summaries[el[1]])
             count += 1
     return top_matches
+
+if __name__ == "__main__":
+    print(getSummaries(sys.argv[1], int(sys.argv[2])))
