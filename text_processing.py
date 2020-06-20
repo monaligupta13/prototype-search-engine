@@ -1,5 +1,6 @@
 from nltk.stem import PorterStemmer
 import re
+import os
 
 # input: string text
 def token_list(text):
@@ -17,7 +18,7 @@ def token_list(text):
     return words
 
 def get_stopwords():
-    stopwords_file = open('raw_data/stopwords.txt', 'r')
+    stopwords_file = open(os.path.join(os.path.dirname(__file__), 'raw_data/stopwords.txt'), 'r')
     stopwords = [stopword.rstrip() for stopword in stopwords_file]
     stopwords_file.close()
     return stopwords
